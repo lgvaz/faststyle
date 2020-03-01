@@ -5,22 +5,31 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"IncrementalSplitter": "01_data.ipynb",
          "coco_stats": "01_data.ipynb",
          "gram": "02_loss.ipynb",
-         "feat_m": "02_loss.ipynb",
-         "VggFeats": "02_loss.ipynb",
-         "layers": "02_loss.ipynb",
-         "get_fs": "02_loss.ipynb",
+         "feat_m": "05_callback.ipynb",
+         "VggFeats": "05_callback.ipynb",
+         "layers": "05_callback.ipynb",
+         "get_fs": "05_callback.ipynb",
          "get_stl_fs": "02_loss.ipynb",
          "get_cnt_fs": "02_loss.ipynb",
          "cnt_loss_fn": "02_loss.ipynb",
          "get_style_loss_fn": "02_loss.ipynb",
          "tv_loss_fn": "02_loss.ipynb",
          "FSTLoss": "02_loss.ipynb",
-         "get_loss_func": "02_loss.ipynb",
-         "TransformerNet": "03_models.ipynb"}
+         "FastStyleLoss": "02_loss.ipynb",
+         "StyleLoss": "02_loss.ipynb",
+         "ContentLoss": "02_loss.ipynb",
+         "TVLoss": "02_loss.ipynb",
+         "FastStyleLoss2": "02_loss.ipynb",
+         "transformer_net": "03_models.ipynb",
+         "TransformerNet": "03_models.ipynb",
+         "style_learner": "04_learner.ipynb",
+         "StyleFsCallback": "05_callback.ipynb"}
 
 modules = ["data.py",
            "loss.py",
-           "models.py"]
+           "models.py",
+           "learner.py",
+           "callback.py"]
 
 doc_url = "https://lgvaz.github.io/faststyle/"
 
