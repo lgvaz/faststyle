@@ -9,11 +9,10 @@ from faststyle import *
 
 # Cell
 class SourceFeatsCallback(Callback):
-  def __init__(self, feats):
-    self.feats = feats
+  def __init__(self, stl_fts, cnt_fts): self.stl_fts, self.cnt_fts = stl_fts,cnt_fts
 
   def after_pred(self):
-    self.learn.yb = (*self.yb, self.feats)
+    self.learn.yb = (*self.yb, self.stl_fts, self.cnt_fts)
 
 # Cell
 class StyleFsCallback(Callback):

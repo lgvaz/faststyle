@@ -54,10 +54,11 @@ class FastStyleLoss2(Module):
     store_attr(self, 'get_fs,stl_w,cnt_w,tv_w')
     self.metric_names = ['stl', 'cnt', 'tv']
 
-  def forward(self, pred, targ, sims_fs, **kwargs):
-    pred_feats,targ_feats = self.get_fs(pred),self.get_fs(targ)
+  def forward(self, pred, targ, stl_fts, cnt_fts, **kwargs):
+    pred_stl_fts,pred_cnt_fts = self.get_fs(pred)
+    targ_stl_fts,targ_cnt_fts = self.get_fs(targ)
 #     assert not (pred_feats[0] == targ_feats[0]).all()
-    self.stl = self.stl_w*self.stl_loss_fn(*L(pred_feats,targ_feats,sims_fs).attrgot('style'))
-    self.cnt = self.cnt_w*self.cnt_loss_fn(*L(pred_feats,targ_feats,sims_fs).attrgot('content'))
+    self.stl = self.stl_w*self.stl_loss_fn(pred_stl_fts,targ_stl_fts,stl_fts)
+    self.cnt = self.cnt_w*self.cnt_loss_fn(pred_cnt_fts,targ_cnt_fts,cnt_fts)
     self.tv  = self.tv_w *self.tv_loss_fn(pred)
     return self.stl+self.cnt+self.tv
