@@ -2,10 +2,15 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"wmean": "00_core.ipynb",
+index = {"TEST_IMAGE": "00_core.ipynb",
+         "wmean": "00_core.ipynb",
          "create": "00_core.ipynb",
          "IncrementalSplitter": "01_data.ipynb",
          "coco_stats": "01_data.ipynb",
+         "TensorImageX": "01_data.ipynb",
+         "PILImageX": "01_data.ipynb",
+         "NormalizeX": "01_data.ipynb",
+         "style_blocks": "01_data.ipynb",
          "FeatModels": "02_layer_features.ipynb",
          "LayerFeats": "02_layer_features.ipynb",
          "gram": "03_loss.ipynb",
