@@ -21,8 +21,7 @@ index = {"TEST_IMAGE": "00_core.ipynb",
          "style_learner": "04_learner.ipynb",
          "transformer_net": "04_models.ipynb",
          "TransformerNet": "04_models.ipynb",
-         "SourceFeatsCallback": "06_callback.ipynb",
-         "StyleFsCallback": "06_callback.ipynb"}
+         "SourceFeatsCallback": "06_callback.ipynb"}
 
 modules = ["core.py",
            "data.py",

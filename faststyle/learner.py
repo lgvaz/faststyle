@@ -8,6 +8,7 @@ from faststyle import *
 
 # Cell
 @delegates(Learner.__init__)
-def style_learner(dls, style_fns, loss_func=None, arch=None, **kwargs):
-  arch = arch or transformer_net()
-  return Learner(dls, arch, loss_func=loss_func, metrics=LossMetrics(loss_func.metric_names),**kwargs)
+def style_learner(dls, model, get_feats, style_fns, loss_func=None, cbs=None, **kwargs):
+  loss_func = loss_func or FastStyleLoss2(get_feats)
+  cbs = L(cbs) + L(SourceFeatsCallback.from_fns(style_fns, get_feats))
+  return Learner(dls, model, loss_func=loss_func, cbs=cbs, **kwargs)
