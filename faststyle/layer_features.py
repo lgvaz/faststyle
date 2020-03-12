@@ -20,7 +20,7 @@ def _get_layers(m, idxs):
   return [m[i] for i in idxs]
 
 # Cell
-_imagenet_norm = Normalize.from_stats(*imagenet_stats)
+_imagenet_norm = NormalizeAll.from_stats(*imagenet_stats)
 
 # Cell
 class FeatModels:
@@ -46,7 +46,7 @@ class LayerFeats(Module):
     self.cnt_hooks = hook_outputs(cnt_ls, detach=False)
 
   def forward(self, x):
-    _ = self.m(self.tfms(TensorImage(x)))
+    _ = self.m(self.tfms(x))
     return self.stl_hooks.stored, self.cnt_hooks.stored
 
   @classmethod
