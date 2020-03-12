@@ -13,16 +13,10 @@ def gram(x):
     return (x @ x.transpose(1,2))/(c*h*w)
 
 # Cell
-#TODO: hardcoded layers
-# def get_stl_fs(fs): return fs[:-1]
-# def get_cnt_fs(fs): return fs[-1:]
-
-# Cell
 def StyleLoss(ws=None):
   def _inner(fs, y_fs, sims_fs):
     assert len(fs)==len(y_fs)==len(sims_fs)
     bs = fs[0].shape[0]
-#     sims_gs = get_stl_fs([torch.stack([gram(x) for x in stl_t]).mean(axis=0) for stl_t in zip(*sims_fs)])
     sims_gs = L(torch.stack([gram(f) for f in fs]).wmean(ws, dim=0) for fs in sims_fs)
     pred_gs = [gram(f) for f in fs]
     assert len(sims_gs) == len(pred_gs)
@@ -59,7 +53,6 @@ class FastStyleLoss(Module):
   def forward(self, pred, targ, stl_fts, cnt_fts, **kwargs):
     pred_stl_fts,pred_cnt_fts = self.get_fs(pred)
     targ_stl_fts,targ_cnt_fts = self.get_fs(targ)
-#     assert not (pred_feats[0] == targ_feats[0]).all()
     self.stl = self.stl_w*self.stl_loss_fn(pred_stl_fts,targ_stl_fts,stl_fts)
     self.cnt = self.cnt_w*self.cnt_loss_fn(pred_cnt_fts,targ_cnt_fts,cnt_fts)
     self.tv  = self.tv_w *self.tv_loss_fn(pred)
