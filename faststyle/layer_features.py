@@ -26,27 +26,27 @@ _imagenet_norm = Normalize.from_stats(*imagenet_stats)
 class FeatModels:
   @staticmethod
   def vgg16():
-    m = vgg16(True).features
+    m = _prepare_model(vgg16(True).features)
     stl_ls = _get_layers(m, (1, 11, 18, 25))
     cnt_ls = _get_layers(m, (20,))
     return dict(m=m, stl_ls=stl_ls, cnt_ls=cnt_ls, tfms=[_imagenet_norm])
 
   @staticmethod
   def vgg19():
-    m = vgg19(True).features
+    m = _prepare_model(vgg19(True).features)
     stl_ls = _get_layers(m, (1, 6, 11, 20, 29))
     cnt_ls = _get_layers(m, (22,))
     return dict(m=m, stl_ls=stl_ls, cnt_ls=cnt_ls, tfms=[_imagenet_norm])
 
 # Cell
-class LayerFeats:
+class LayerFeats(Module):
   def __init__(self, m, stl_ls, cnt_ls, tfms=None):
-    self.m, self.tfms = _prepare_model(m), Pipeline(tfms)
+    self.m, self.tfms = m, Pipeline(tfms)
     self.stl_hooks = hook_outputs(stl_ls, detach=False)
     self.cnt_hooks = hook_outputs(cnt_ls, detach=False)
 
-  def __call__(self, x):
-    _ = self.m(self.tfms(x))
+  def forward(self, x):
+    _ = self.m(self.tfms(TensorImage(x)))
     return self.stl_hooks.stored, self.cnt_hooks.stored
 
   @classmethod
