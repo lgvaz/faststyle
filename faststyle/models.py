@@ -34,7 +34,7 @@ class TransformerNet(Module):
         self.deconv3 = _ConvLayer(32, 3, kernel_size=9, stride=1)
         # Non-linearities
         self.relu = torch.nn.ReLU()
-#         self.sigm = torch.nn.Sigmoid()
+        self.sigm = torch.nn.Sigmoid()
 
     def forward(self, X):
         y = self.relu(self.in1(self.conv1(X)))
@@ -48,7 +48,7 @@ class TransformerNet(Module):
         y = self.relu(self.in4(self.deconv1(y)))
         y = self.relu(self.in5(self.deconv2(y)))
         y = self.deconv3(y)
-#         y = self.sigm(y)
+        y = self.sigm(y)
         return y
 
 # Cell
