@@ -13,9 +13,9 @@ def gram(x):
     return (x @ x.transpose(1,2))/(c*h*w)
 
 # Cell
-def content_loss(pred, targ, fts, ws=None):
-  ws = ws or [1.]*len(fts['pred']['cnt'])
-  return sum([w*F.mse_loss(p,t) for w,p,t in zip_safe(ws,fts['pred']['cnt'],fts['targ']['cnt'])])
+def content_loss(pred, targ, fts, layer_ws=None):
+  layer_ws = layer_ws or [1.]*len(fts['pred']['cnt'])
+  return sum([w*F.mse_loss(p,t) for w,p,t in zip_safe(layer_ws,fts['pred']['cnt'],fts['targ']['cnt'])])
 
 # Cell
 def style_loss(pred, targ, fts, layer_ws=None, stl_ws=None):
