@@ -17,7 +17,7 @@ class FeatsCallback(Callback):
     self.fts['source']['stl'],self.fts['source']['cnt'] = L(stl_fts),L(cnt_fts)
 
   def after_pred(self):
-    assert len(self.yb)==1
+    if len(self.yb) == 0: return
     fts = self.fts
     fts['pred']['stl'],fts['pred']['cnt'] = self.get_fts(self.pred)
     fts['targ']['stl'],fts['targ']['cnt'] = self.get_fts(self.yb[0])
