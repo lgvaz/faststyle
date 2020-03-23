@@ -1,6 +1,12 @@
 {
   "faststyle": {
     "Overview": "/",
-    "Title": "/callback"
+    "Core": "/core",
+    "Data": "/data",
+    "Layer Features": "/layer_features",
+    "Loss": "/loss",
+    "Custom models": "/models",
+    "Style learner": "/learner",
+    "Custom callbacks": "/callback"
   }
 }

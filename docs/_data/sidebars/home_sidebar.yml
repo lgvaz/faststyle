@@ -10,7 +10,25 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Title
+      title: Core
+      url: /core
+    - output: web,pdf
+      title: Data
+      url: /data
+    - output: web,pdf
+      title: Layer Features
+      url: /layer_features
+    - output: web,pdf
+      title: Loss
+      url: /loss
+    - output: web,pdf
+      title: Custom models
+      url: /models
+    - output: web,pdf
+      title: Style learner
+      url: /learner
+    - output: web,pdf
+      title: Custom callbacks
       url: /callback
     output: web
     title: faststyle
