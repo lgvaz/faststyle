@@ -24,17 +24,17 @@ index = {"TEST_IMAGE": "00_core.ipynb",
          "pixel_loss": "03_loss.ipynb",
          "FastStyleLoss": "03_loss.ipynb",
          "SuperResLoss": "03_loss.ipynb",
-         "style_learner": "04_learner.ipynb",
          "transformer_net": "04_models.ipynb",
          "TransformerNet": "04_models.ipynb",
+         "style_learner": "05_learner.ipynb",
          "FeatsCallback": "06_callback.ipynb"}
 
 modules = ["core.py",
            "data.py",
            "layer_features.py",
            "loss.py",
-           "learner.py",
            "models.py",
+           "learner.py",
            "callback.py"]
 
 doc_url = "https://lgvaz.github.io/faststyle/"

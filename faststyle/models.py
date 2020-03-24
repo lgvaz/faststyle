@@ -3,7 +3,7 @@
 __all__ = ['transformer_net', 'TransformerNet']
 
 # Cell
-import torch
+import torch, kornia
 from fastai2.basics import *
 from fastai2.vision.all import *
 
@@ -83,27 +83,4 @@ class _ResidualBlock(Module):
         out = self.relu(self.in1(self.conv1(x)))
         out = self.in2(self.conv2(out))
         out = out + residual
-        return out
-
-# Cell
-class _Upsample_ConvLayer(Module):
-    """_Upsample_ConvLayer
-    Upsamples the input and then does a convolution. This method gives better results
-    compared to ConvTranspose2d.
-    ref: http://distill.pub/2016/deconv-checkerboard/
-    """
-
-    def __init__(self, in_channels, out_channels, kernel_size, stride, upsample=None):
-        super(_Upsample_ConvLayer, self).__init__()
-        self.upsample = upsample
-        reflection_padding = kernel_size // 2
-        self.reflection_pad = torch.nn.ReflectionPad2d(reflection_padding)
-        self.conv2d = torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride)
-
-    def forward(self, x):
-        x_in = x
-        if self.upsample:
-            x_in = torch.nn.functional.interpolate(x_in, mode='nearest', scale_factor=self.upsample)
-        out = self.reflection_pad(x_in)
-        out = self.conv2d(out)
         return out
