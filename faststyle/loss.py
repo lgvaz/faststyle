@@ -18,6 +18,7 @@ def content_loss(pred, targ, fts, layer_ws=None):
   return sum([w*F.mse_loss(p,t) for w,p,t in zip_safe(layer_ws,fts['pred']['cnt'],fts['targ']['cnt'])])
 
 # Cell
+# TODO: Refactor
 def style_loss(pred, targ, fts, layer_ws=None, stl_ws=None):
   bs = fts['pred']['stl'][0].shape[0]
   ws = fts['ws'].T[...,None,None]
