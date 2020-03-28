@@ -20,8 +20,9 @@ def _wmean(t:Tensor, w=None, dim=None):
   'Weighted mean'
   if w is None: return t.mean(dim=dim)
   w = tensor(w, device=t.device)
-  assert w.sum() == 1., 'weights must sum to 1'
+  assert w.sum(dim).mean() == 1., 'weights must sum to 1'
   if dim is not None:
+    set_trace()
     assert len(w) == t.shape[dim], 'weights must have the same number of items as chosen dimension'
     sz = torch.ones(len(t.shape), dtype=int)
     sz[dim] = t.shape[dim]

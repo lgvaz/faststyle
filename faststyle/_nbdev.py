@@ -26,6 +26,7 @@ index = {"TEST_IMAGE": "00_core.ipynb",
          "SuperResLoss": "03_loss.ipynb",
          "transformer_net": "04_models.ipynb",
          "TransformerNet": "04_models.ipynb",
+         "TransformerNet2": "04_models.ipynb",
          "style_learner": "05_learner.ipynb",
          "FeatsCallback": "06_callback.ipynb"}
 

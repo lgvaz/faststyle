@@ -20,10 +20,18 @@ def content_loss(pred, targ, fts, layer_ws=None):
 # Cell
 def style_loss(pred, targ, fts, layer_ws=None, stl_ws=None):
   bs = fts['pred']['stl'][0].shape[0]
-  sims_gs = L(torch.stack([gram(f) for f in fs]).wmean(stl_ws, dim=0) for fs in fts['source']['stl'])
+  ws = fts['ws'].T[...,None,None]
+  gs = []
+  for fs in fts['source']['stl']:
+    g = torch.stack([gram(f).expand(bs,-1,-1) for f in fs])
+    g = g.mul_(ws).sum(dim=0)
+    gs.append(g)
+#   sims_gs = L(torch.stack([gram(f).expand(bs,-1,-1) for f in fs]) for fs in fts['source']['stl'])
+#   sims_gs = L(torch.stack([gram(f) for f in fs]).wmean(stl_ws, dim=0) for fs in fts['source']['stl'])
   pred_gs = [gram(f) for f in fts['pred']['stl']]
   layer_ws = layer_ws or [1.]*len(pred_gs)
-  stl_losses = [w*F.mse_loss(g1.repeat(bs,1,1),g2) for w,g1,g2 in zip_safe(layer_ws,sims_gs,pred_gs)]
+  # TODO: Use expand instead of repeat. Repeat copies the tensor data
+  stl_losses = [w*F.mse_loss(g1,g2) for w,g1,g2 in zip_safe(layer_ws,gs,pred_gs)]
   return sum(stl_losses)
 
 # Cell
@@ -64,7 +72,7 @@ class SuperResLoss:
   def __init__(self, **kwargs):
     self.metrics = L(LossMetrics(['pixel','cnt']))
 
-  def __call__(self, pred, targ, fts,**kwargs):
+  def __call__(self, pred, targ, fts, **kwargs):
     self.pixel = self.pixel_loss(pred,targ,fts,**kwargs)
     self.cnt   = self.cnt_loss  (pred,targ,fts,**kwargs)
     return self.pixel+self.cnt
