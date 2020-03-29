@@ -59,7 +59,7 @@ class Weights(TensorBase, ShowTitle):
 # Cell
 class ImageWeight(Tuple):
   @classmethod
-  def create(cls, fn, ws=None, imcls=PILImageX): return cls(imcls.create(fn), Weights(ifnone(ws, [1.])))
+  def create(cls, fnw, imcls=PILImageX): return cls(imcls.create(fnw[0]), Weights(fnw[1]))
   def show(self, ctx=None, **kwargs): return show_titled_image(self, ctx=ctx, **kwargs)
 ImageWeight.im, ImageWeight.ws = add_props(lambda i,x: x[i])
 
