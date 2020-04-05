@@ -21,7 +21,11 @@ def content_loss(pred, targ, fts, layer_ws=None):
 # TODO: Refactor
 def style_loss(pred, targ, fts, layer_ws=None, stl_ws=None):
   bs = fts['pred']['stl'][0].shape[0]
-  ws = fts['ws'].T[...,None,None]
+  try:
+    ws = fts['ws'].T[...,None,None]
+  except KeyError:
+    n = len(fts['source']['stl'][0])
+    ws = torch.ones((n,bs,1,1)).to(default_device()) / n
   gs = []
   for fs in fts['source']['stl']:
     g = torch.stack([gram(f).expand(bs,-1,-1) for f in fs])
