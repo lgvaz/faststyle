@@ -4,8 +4,8 @@ __all__ = ['transformer_net', 'TransformerNet', 'TransformerNet2']
 
 # Cell
 import torch, kornia
-from fastai2.basics import *
-from fastai2.vision.all import *
+from fastai.basics import *
+from fastai.vision.all import *
 
 # Cell
 def transformer_net(): return TransformerNet()

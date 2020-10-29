@@ -4,7 +4,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"TEST_IMAGE": "00_core.ipynb",
          "zip_safe": "00_core.ipynb",
-         "wmean": "00_core.ipynb",
+         "Tensor.wmean": "00_core.ipynb",
          "create": "00_core.ipynb",
          "IncrementalSplitter": "01_data.ipynb",
          "TensorImageX": "01_data.ipynb",

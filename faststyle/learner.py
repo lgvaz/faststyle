@@ -3,7 +3,7 @@
 __all__ = ['style_learner']
 
 # Cell
-from fastai2.basics import *
+from fastai.basics import *
 from faststyle import *
 
 # Cell

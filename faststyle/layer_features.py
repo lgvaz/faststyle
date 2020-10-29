@@ -3,9 +3,9 @@
 __all__ = ['prepare_feat_model', 'get_layers', 'FeatModels', 'LayerFeats']
 
 # Cell
-from fastai2.basics import *
-from fastai2.vision.all import *
-from fastai2.callback.all import *
+from fastai.basics import *
+from fastai.vision.all import *
+from fastai.callback.all import *
 from torchvision.models import vgg16, vgg19
 from faststyle import *
 
