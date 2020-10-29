@@ -3,7 +3,7 @@
 __all__ = ['gram', 'content_loss', 'style_loss', 'tv_loss', 'pixel_loss', 'FastStyleLoss', 'SuperResLoss']
 
 # Cell
-from fastai2.basics import *
+from fastai.basics import *
 from faststyle import *
 
 # Cell
@@ -54,7 +54,7 @@ def pixel_loss(pred, targ, fts, base_loss=F.mse_loss, **kwargs):
 class FastStyleLoss:
   _methods=['stl_loss','cnt_loss','tv_loss']
   def __init__(self, stl_w=3e5, cnt_w=1, tv_w=20, **kwargs):
-    store_attr(self, 'stl_w,cnt_w,tv_w')
+    store_attr('stl_w,cnt_w,tv_w')
     self.metrics = L(LossMetrics(['stl', 'cnt', 'tv']))
 
   def __call__(self, pred, targ, fts, **kwargs):

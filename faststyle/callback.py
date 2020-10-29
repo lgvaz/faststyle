@@ -3,15 +3,15 @@
 __all__ = ['FeatsCallback', 'WeightsCallback']
 
 # Cell
-from fastai2.basics import *
-from fastai2.callback.all import *
+from fastai.basics import *
+from fastai.callback.all import *
 from faststyle import *
 
 # Cell
 # TODO: This allow loss functions to be separated
 class FeatsCallback(Callback):
   def __init__(self, get_fts, stl_fts=None, cnt_fts=None):
-    store_attr(self, 'get_fts,stl_fts,cnt_fts')
+    store_attr('get_fts,stl_fts,cnt_fts')
     # Change dict with a class. Can be accessed with .
     self.fts = dict(pred={}, targ={}, source={})
     self.fts['source']['stl'],self.fts['source']['cnt'] = L(stl_fts),L(cnt_fts)

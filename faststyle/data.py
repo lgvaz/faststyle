@@ -4,8 +4,8 @@ __all__ = ['IncrementalSplitter', 'TensorImageX', 'PILImageX', 'NormalizeX', 'st
            'random_weights', 'Weights', 'ImageWeight', 'RandomizeWeights', 'coco_stats']
 
 # Cell
-from fastai2.basics import *
-from fastai2.vision.all import *
+from fastai.basics import *
+from fastai.vision.all import *
 from faststyle import *
 
 # Cell
@@ -57,7 +57,7 @@ class Weights(TensorBase, ShowTitle):
   def create(cls, x):  return cls(x)
 
 # Cell
-class ImageWeight(Tuple):
+class ImageWeight(fastuple):
   @classmethod
   def create(cls, fnw, imcls=PILImageX): return cls(imcls.create(fnw[0]), Weights(fnw[1]))
   def show(self, ctx=None, **kwargs): return show_titled_image(self, ctx=ctx, **kwargs)
